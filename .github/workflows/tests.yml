@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["2.7", "3.5", "3.6", "3.7", "3.8", "3.9", "3.10", "3.11"]
+        python-version: ["3.7"]
     
     env:
       AUSTIN_TESTS_PYTHON_VERSIONS: ${{ matrix.python-version }}
@@ -44,6 +44,12 @@ jobs:
           sudo ln -sf libffi.so.6.0.4 /usr/lib/x86_64-linux-gnu/libffi.so
           sudo dpkg -i libffi7_3.3-4_amd64.deb
           sudo ln -sf libffi.so.7.1.0 /lib/x86_64-linux-gnu/libffi.so.7
+          sudo ldconfig -p
+          sudo ldconfig -p > /tmp/1
+          sudo ldconfig
+          sudo ldconfig -p
+          sudo ldconfig -p > /tmp/2
+          diff /tmp/1 /tmp/2 || true
 
       - name: Install Python
         uses: actions/setup-python@v4
@@ -72,79 +78,3 @@ jobs:
           .venv/bin/pytest --pastebin=failed --no-flaky-report -sr a
           deactivate
 
-  tests-osx:
-    runs-on: macos-latest
-
-    strategy:
-      fail-fast: false
-      matrix:
-        python-version: ["2.7", "3.5", "3.6", "3.7", "3.8", "3.9", "3.10", "3.11"]
-
-    env:
-      AUSTIN_TESTS_PYTHON_VERSIONS: ${{ matrix.python-version }}
-
-    name: Tests on macOS with Python ${{ matrix.python-version }}
-    steps:
-      - uses: actions/checkout@v2
-      - name: Compile Austin
-        run: gcc -Wall -O3 -g src/*.c -o src/austin
-
-      - name: Install Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: ${{ matrix.python-version }}-dev
-
-      - name: Install Python 3.10
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.10"
-
-      - name: Run tests
-        run: |
-          python3.10 -m pip install --upgrade pip
-          python3.10 -m pip install -r test/requirements.txt
-          python${{ matrix.python-version }} -m venv .venv \
-            || (python${{ matrix.python-version }} -m pip install virtualenv && python${{ matrix.python-version }} -m virtualenv .venv)
-          source .venv/bin/activate
-          sudo -E pytest --ignore=test/cunit --pastebin=failed --no-flaky-report -sr a
-          deactivate
-
-  tests-win:
-    runs-on: windows-latest
-
-    strategy:
-      fail-fast: false
-      matrix:
-        python-version: ["2.7", "3.5", "3.6", "3.7", "3.8", "3.9", "3.10", "3.11"]
-
-    env:
-      AUSTIN_TESTS_PYTHON_VERSIONS: ${{ matrix.python-version }}
-    
-    name: Tests on Windows with Python ${{ matrix.python-version }}
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Compile Austin
-        run: |
-          gcc.exe --version
-          gcc.exe -O3 -g -o src/austin.exe src/*.c -lpsapi -lntdll -Wall
-          src\austin.exe --help
-
-      - name: Install Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: ${{ matrix.python-version }}-dev
-
-      - uses: actions/setup-python@v2
-        name: Install Python 3.10
-        with:
-          python-version: '3.10'
-
-      - name: Run tests
-        run: |
-          py -3.10 -m venv venv
-          venv\Scripts\Activate.ps1
-          python -m pip install --upgrade pip
-          python -m pip install -r test/requirements.txt
-          python -m pytest --ignore=test\cunit --pastebin=failed --no-flaky-report -sr a
-          deactivate
