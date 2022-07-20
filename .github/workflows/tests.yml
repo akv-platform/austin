@@ -3,8 +3,7 @@ name: Tests
 on:
   push:
     branches:
-      - master
-  pull_request:
+      - ci/setup-python-workaround
 
 concurrency: 
   group: ${{ github.head_ref || github.run_id }}
