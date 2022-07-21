@@ -33,6 +33,7 @@ _header_head = r"""
 // typedef struct __builtin_va_list { } __builtin_va_list;
 """
 
+print("cunit __init__.py")
 
 def preprocess(source: Path) -> str:
     with source.open() as fin:
