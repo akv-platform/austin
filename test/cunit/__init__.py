@@ -64,6 +64,8 @@ def compile(
     if not force and binary.is_file():
         return
 
+    print("gcc" + "-shared" + *cflags + "-o" + str(binary) + str(source) + *(str(_) for _ in extra_sources) + *ldadd)
+
     result = run(
         [
             "gcc",
