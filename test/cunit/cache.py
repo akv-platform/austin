@@ -8,6 +8,6 @@ print("start compile " + __name__)
 print(__name__)
 print(SRC / Path(__file__).stem)
 sys.modules[__name__] = SRC / Path(__file__).stem
-print(sys.modules)
-#CModule.compile(SRC / Path(__file__).stem, cflags=CFLAGS)
+CModule.compile(SRC / Path(__file__).stem, cflags=CFLAGS)
 print("end compile")
+print(sys.modules)
