@@ -283,6 +283,7 @@ class DeclCollector(c_ast.NodeVisitor):
 
 class CModule(ModuleType):
     def __init__(self, source: Path) -> None:
+        print("CModule "+source.name)
         super().__init__(source.name, f"Generated from {source.with_suffix('.c')}")
 
         so_file = source.with_suffix(".so")
