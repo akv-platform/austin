@@ -69,9 +69,8 @@ jobs:
 
       - name: Run repro
         run: |
-          ls -la .venv/bin/python
+          ls -la .venv/bin/python && .venv/bin/python repro.py || echo "no env"
           ls -la `which python3.10`
-          .venv/bin/python repro.py
           python3.10 repro.py
 
       - name: Run tests
