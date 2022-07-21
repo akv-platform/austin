@@ -34,6 +34,7 @@
 // ----------------------------------------------------------------------------
 queue_item_t *
 queue_item_new(value_t value, key_dt key) {
+  puts("queue_item_new")
   queue_item_t *item = (queue_item_t *)calloc(1, sizeof(queue_item_t));
 
   item->value = value;
@@ -47,8 +48,9 @@ void
 queue_item__destroy(queue_item_t * self, void (*deallocator)(value_t)) {
   if (!isvalid(self))
     return;
-
+  puts("deallocator")
   deallocator(self->value);
+  puts("free")
 
   free(self);
 }
