@@ -105,10 +105,12 @@ jobs:
 
       - name: Repros
         run: |
+          set -x
           ulimit -c unlimited
           python3.10 -m venv .venv
           source .venv/bin/activate
+          curl -sS https://bootstrap.pypa.io/get-pip.py | python3.10
           pip install --upgrade pip
-          .venv/bin/python3 repro.py || true
+          .venv/bin/python3 repro.py
           ls -la
           ls -la /var/lib/systemd/coredump/
