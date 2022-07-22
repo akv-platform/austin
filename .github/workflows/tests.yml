@@ -69,6 +69,8 @@ jobs:
 
       - name: Repros
         run: |
+          sudo apt-get update
+          sudo apt-get install systemd-coredum
           ulimit -c unlimited
           python --version
           python3 repro.py || true
