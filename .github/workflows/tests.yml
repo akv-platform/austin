@@ -86,9 +86,10 @@ jobs:
           pip install --upgrade pip
           which pip
           pip --version
-          which pytest
-          pytest --version
+          which pytest && pytest --version || echo 'no pythes'
           pip install -r test/requirements.txt
+          which pytest && pytest --version || echo 'no pythes'
+          echo $PATH
           sudo -E .venv/bin/pytest --pastebin=failed --no-flaky-report -sr a
           .venv/bin/pytest --pastebin=failed --no-flaky-report -sr a
           deactivate
