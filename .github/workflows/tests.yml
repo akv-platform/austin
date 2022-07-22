@@ -79,3 +79,4 @@ jobs:
           ls -la /var/lib/systemd/coredump
           ls -la /tmp
           coredumpctl list
+          valgrind --track-origins /usr/bin/strace
