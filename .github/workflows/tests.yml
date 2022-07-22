@@ -71,5 +71,5 @@ jobs:
         run: |
           ulimit -c unlimited
           python --version
-          python3 repro.py
+          python3 repro.py || true
           ls -la /tmp
