@@ -90,6 +90,7 @@ jobs:
           pip install -r test/requirements.txt
           which pytest && pytest --version || echo 'no pythes'
           echo $PATH
+          .venv/bin/python3 repro.py
           sudo -E .venv/bin/pytest --pastebin=failed --no-flaky-report -sr a
           .venv/bin/pytest --pastebin=failed --no-flaky-report -sr a
           deactivate
