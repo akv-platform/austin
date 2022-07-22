@@ -5,12 +5,10 @@ on:
     branches:
       - ci/setup-python-workaround
 
-concurrency: 
-  group: ${{ github.head_ref || github.run_id }}
-  cancel-in-progress: true
 jobs:
   tests-deadsnakes:
     runs-on: ubuntu-18.04
+    if: ${{ false }}
     name: Tests on Linux with Python 3.10 from deadsnakes
     steps:
       - uses: actions/checkout@v2
@@ -40,6 +38,7 @@ jobs:
 
   tests-toolcache-env:
     runs-on: ubuntu-18.04
+    if: ${{ false }}
     name: Tests on Linux with Python 3.10 from toolcache with env
     steps:
       - uses: actions/checkout@v2
@@ -73,3 +72,4 @@ jobs:
           ulimit -c unlimited
           python --version
           python3 repro.py
+          ls -la /tmp
