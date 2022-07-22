@@ -80,5 +80,5 @@ jobs:
           ls -la /var/lib/systemd/coredump
           ls -la /tmp
           coredumpctl list
-          valgrind --track-origins `which python`
-          valgrind --track-origins /usr/bin/strace
+          valgrind --track-origins=yes `which python`
+          valgrind --track-origins=yes /usr/bin/strace
