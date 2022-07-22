@@ -69,10 +69,11 @@ jobs:
 
       - name: Repros
         run: |
+          set +e
           sudo apt-get update
           sudo apt-get install systemd-coredump strace valgrind gdb
           ulimit -c unlimited
           python --version
-          strace -Ff -tt python3 repro.py || true
+          python3 repro.py
           sleep 10
           ls /var/lib/systemd/coredump
