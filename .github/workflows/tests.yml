@@ -38,9 +38,9 @@ jobs:
           pip install --upgrade pip
           .venv/bin/python3 repro.py
 
-  tests-toolcach:
+  tests-toolcache-env:
     runs-on: ubuntu-18.04
-    name: Tests on Linux with Python 3.10 from toolcache
+    name: Tests on Linux with Python 3.10 from toolcache with env
     steps:
       - uses: actions/checkout@v2
 
@@ -56,3 +56,20 @@ jobs:
           source .venv/bin/activate
           pip install --upgrade pip
           .venv/bin/python3 repro.py
+
+  tests-toolcach:
+    runs-on: ubuntu-18.04
+    name: Tests on Linux with Python 3.10 from toolcache
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Repros
+        run: |
+          ulimit -c unlimited
+          python --version
+          python3 repro.py
