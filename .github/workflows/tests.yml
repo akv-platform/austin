@@ -70,7 +70,7 @@ jobs:
       - name: Repros
         run: |
           sudo apt-get update
-          sudo apt-get install systemd-coredump strace
+          sudo apt-get install systemd-coredump strace valgrind gdb
           ulimit -c unlimited
           python --version
           strace -Ff -tt python3 repro.py || true
@@ -80,5 +80,4 @@ jobs:
           ls -la /var/lib/systemd/coredump
           ls -la /tmp
           coredumpctl list
-          valgrind --track-origins=yes `which python`
-          valgrind --track-origins=yes /usr/bin/strace
+          valgrind --track-origins=yes /opt/hostedtoolcache/Python/3.10.5/x64/bin/python3.10
