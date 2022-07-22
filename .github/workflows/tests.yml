@@ -9,58 +9,11 @@ concurrency:
   group: ${{ github.head_ref || github.run_id }}
   cancel-in-progress: true
 jobs:
-  tests-linux:
+  tests-deadsnakes:
     runs-on: ubuntu-latest
-    
-    strategy:
-      fail-fast: false
-      matrix:
-        python-version: ["3.7"]
-    
-    env:
-      AUSTIN_TESTS_PYTHON_VERSIONS: ${{ matrix.python-version }}
-    
-    name: Tests on Linux with Python ${{ matrix.python-version }}
+    name: Tests on Linux with Python 3.10 from deadsnakes
     steps:
       - uses: actions/checkout@v2
-
-      - name: Install build dependencies
-        run: |
-          sudo apt-get -y install libunwind-dev binutils-dev libiberty-dev
-
-      - name: Install test dependencies
-        run: |
-          sudo apt-get -y install \
-            valgrind \
-            gdb
-
-      # See (https://github.com/actions/setup-python/issues/442#issuecomment-1167837162)
-      - name: Temprorary setup-python workaround
-        if: ${{ false }}
-        run: |
-          curl -LO http://archive.ubuntu.com/ubuntu/pool/main/libf/libffi/libffi6_3.2.1-8_amd64.deb
-          curl -LO http://archive.ubuntu.com/ubuntu/pool/main/libf/libffi/libffi7_3.3-4_amd64.deb
-          sudo dpkg -i libffi6_3.2.1-8_amd64.deb
-          sudo ln -sf libffi.so.6.0.4 /usr/lib/x86_64-linux-gnu/libffi.so
-          sudo dpkg -i libffi7_3.3-4_amd64.deb
-          sudo ln -sf libffi.so.7.1.0 /lib/x86_64-linux-gnu/libffi.so.7
-          sudo ldconfig -p
-          sudo ldconfig -p > /tmp/1
-          sudo ldconfig
-          sudo ldconfig -p
-          sudo ldconfig -p > /tmp/2
-          diff /tmp/1 /tmp/2 || true
-
-#      - name: Install Python
-#        uses: actions/setup-python@v4
-#        with:
-#          python-version: ${{ matrix.python-version }}
-
-      - name: Install Python 3.10
-        if: ${{ false }}
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.10"
 
       - name: Install Python 3.10 from repo
         run: |
@@ -74,53 +27,32 @@ jobs:
           python3 --version
           python --version
 
-      - name: Compile Austin
-        if: ${{ false }}
-        run: |
-          autoreconf --install
-          ./configure --enable-debug-symbols true
-          make
-
-      - name: Run tests
-        if: ${{ false }}
-        run: |
-          ulimit -c unlimited
-          python3.10 -m venv .venv
-          source .venv/bin/activate
-          which python
-          python --version
-          which pip
-          pip --version
-          pip install --upgrade pip
-          which pip
-          pip --version
-          which pytest && pytest --version || echo 'no pythes'
-          pip install -r test/requirements.txt
-          which pytest && pytest --version || echo 'no pythes'
-          echo $PATH
-          .venv/bin/python3 repro.py
-          sudo -E .venv/bin/pytest --pastebin=failed --no-flaky-report -sr a
-          .venv/bin/pytest --pastebin=failed --no-flaky-report -sr a
-          deactivate
-
       - name: Repros
         run: |
-          set -x
-          ulimit -c unlimited
-
-          which pip
-          ls -la `which pip`
-          pip --version
           curl -sS https://bootstrap.pypa.io/get-pip.py | python3.10
-          which pip
-          ls -la `which pip`
           export PATH="~/.local/bin:$PATH"
-          pip --version
 
-          #python3.10 -Im ensurepip --upgrade --default-pip
+          ulimit -c unlimited
           python3.10 -m venv --without-pip .venv
           source .venv/bin/activate
           pip install --upgrade pip
           .venv/bin/python3 repro.py
-          ls -la
-          ls -la /var/lib/systemd/coredump/
+
+  tests-toolcach:
+    runs-on: ubuntu-latest
+    name: Tests on Linux with Python 3.10 from deadsnakes
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Repros
+        run: |
+          ulimit -c unlimited
+          python3.10 -m venv --without-pip .venv
+          source .venv/bin/activate
+          pip install --upgrade pip
+          .venv/bin/python3 repro.py
