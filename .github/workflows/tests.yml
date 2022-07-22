@@ -73,6 +73,7 @@ jobs:
           python3.10 --version
           python3 --version
           python --version
+          curl -sS https://bootstrap.pypa.io/get-pip.py | python3.10
 
       - name: Compile Austin
         if: ${{ false }}
@@ -109,7 +110,6 @@ jobs:
           ulimit -c unlimited
           python3.10 -m venv .venv
           source .venv/bin/activate
-          curl -sS https://bootstrap.pypa.io/get-pip.py | python3.10
           pip install --upgrade pip
           .venv/bin/python3 repro.py
           ls -la
