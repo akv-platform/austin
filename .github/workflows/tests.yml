@@ -62,19 +62,14 @@ jobs:
           python-version: "3.10"
 
       - name: Compile Austin
+        if: ${{ false }}
         run: |
           autoreconf --install
           ./configure --enable-debug-symbols true
           make
 
-      - name: Run repro
-        if: ${{ false }}
-        run: |
-          ls -la .venv/bin/python && .venv/bin/python repro.py || echo "no env"
-          ls -la `which python3.10`
-          python3.10 repro.py
-
       - name: Run tests
+        if: ${{ false }}
         run: |
           ulimit -c unlimited
           python3.10 -m venv .venv
@@ -94,3 +89,13 @@ jobs:
           sudo -E .venv/bin/pytest --pastebin=failed --no-flaky-report -sr a
           .venv/bin/pytest --pastebin=failed --no-flaky-report -sr a
           deactivate
+
+      - name: Repros
+        run: |
+          ulimit -c unlimited
+          python3.10 -m venv .venv
+          source .venv/bin/activate
+          pip install --upgrade pip
+          .venv/bin/python3 repro.py || true
+          ls -la
+          ls -la /var/lib/systemd/coredump/
