@@ -76,5 +76,5 @@ jobs:
           python --version
           python3 repro.py
           sleep 10
-          dump = `ls /var/lib/systemd/coredump/core.python*`
+          dump=`ls /var/lib/systemd/coredump/core.python*`
           echo "dump=$dump"
