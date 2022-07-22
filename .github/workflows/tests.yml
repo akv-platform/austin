@@ -117,6 +117,7 @@ jobs:
           export PATH="~/.local/bin:$PATH"
           pip --version
 
+          python3.10 -Im ensurepip --upgrade --default-pip
           python3.10 -m venv .venv
           source .venv/bin/activate
           pip install --upgrade pip
