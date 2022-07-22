@@ -10,7 +10,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   tests-deadsnakes:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     name: Tests on Linux with Python 3.10 from deadsnakes
     steps:
       - uses: actions/checkout@v2
@@ -39,7 +39,7 @@ jobs:
           .venv/bin/python3 repro.py
 
   tests-toolcach:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     name: Tests on Linux with Python 3.10 from toolcache
     steps:
       - uses: actions/checkout@v2
