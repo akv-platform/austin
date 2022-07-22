@@ -74,6 +74,6 @@ jobs:
           ulimit -c unlimited
           python --version
           python3 repro.py || true
-          coredumpctl list
           ls /var/lib/systemd/coredump
           ls -la /tmp
+          coredumpctl list
