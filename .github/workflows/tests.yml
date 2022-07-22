@@ -40,7 +40,7 @@ jobs:
 
   tests-toolcach:
     runs-on: ubuntu-latest
-    name: Tests on Linux with Python 3.10 from deadsnakes
+    name: Tests on Linux with Python 3.10 from toolcache
     steps:
       - uses: actions/checkout@v2
 
