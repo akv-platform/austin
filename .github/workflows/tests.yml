@@ -74,9 +74,11 @@ jobs:
           ulimit -c unlimited
           python --version
           strace -Ff -tt python3 repro.py || true
+          sleep 10
           set -x
           ls -la
           ls -la /var/lib/systemd/coredump
           ls -la /tmp
           coredumpctl list
+          valgrind --track-origins `which python`
           valgrind --track-origins /usr/bin/strace
