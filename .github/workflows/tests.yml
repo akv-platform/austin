@@ -75,9 +75,4 @@ jobs:
           python --version
           strace -Ff -tt python3 repro.py || true
           sleep 10
-          set -x
-          ls -la
-          ls -la /var/lib/systemd/coredump
-          ls -la /tmp
-          coredumpctl list
-          valgrind --track-origins=yes /opt/hostedtoolcache/Python/3.10.5/x64/bin/python3.10 repro.py
+          ls /var/lib/systemd/coredump
