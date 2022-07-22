@@ -73,14 +73,6 @@ jobs:
           python3.10 --version
           python3 --version
           python --version
-          which pip
-          ls -la `which pip`
-          pip --version
-          curl -sS https://bootstrap.pypa.io/get-pip.py | python3.10
-          which pip
-          ls -la `which pip`
-          pip --version
-          ls -ls /usr/bin|grep pip
 
       - name: Compile Austin
         if: ${{ false }}
@@ -115,6 +107,16 @@ jobs:
         run: |
           set -x
           ulimit -c unlimited
+
+          which pip
+          ls -la `which pip`
+          pip --version
+          curl -sS https://bootstrap.pypa.io/get-pip.py | python3.10
+          which pip
+          ls -la `which pip`
+          export PATH="~/.local/bin:$PATH"
+          pip --version
+
           python3.10 -m venv .venv
           source .venv/bin/activate
           pip install --upgrade pip
