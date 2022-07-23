@@ -115,4 +115,6 @@ jobs:
       - name: Repros
         run: |
           set +e
+          ls -l `which python3`
+          python3 --version
           python3 repro.py
