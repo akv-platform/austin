@@ -8,6 +8,6 @@ print("==========")
 v1=value
 print("v1")
 print(v1)
-print("value")
+print("value=>")
 print(value)
 C.free(value)
