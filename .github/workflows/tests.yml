@@ -7,7 +7,7 @@ on:
 
 jobs:
   tests-deadsnakes:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     if: ${{ false }}
     name: Tests on Linux with Python 3.10 from deadsnakes
     steps:
@@ -37,7 +37,7 @@ jobs:
           .venv/bin/python3 repro.py
 
   tests-toolcache-env:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     if: ${{ false }}
     name: Tests on Linux with Python 3.10 from toolcache with env
     steps:
@@ -57,7 +57,7 @@ jobs:
           .venv/bin/python3 repro.py
 
   tests-toolcach:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     name: Tests on Linux with Python 3.10 from toolcache
     steps:
       - uses: actions/checkout@v2
