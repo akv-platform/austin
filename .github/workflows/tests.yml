@@ -8,7 +8,7 @@ on:
 jobs:
   tests-deadsnakes-env:
     runs-on: ubuntu-latest
-    if: ${{ true }}
+    if: ${{ false }}
     name: Tests on Linux with Python 3.10 from deadsnakes env
     steps:
       - uses: actions/checkout@v2
@@ -49,7 +49,7 @@ jobs:
           sudo apt install software-properties-common -y
           sudo add-apt-repository ppa:deadsnakes/ppa -y
           sudo apt update
-          sudo apt install python3.10 -y
+          sudo apt install python3.10 strace -y
           sudo ln -s -f /usr/bin/python3 python3.10
           python3.10 --version
           python3 --version
@@ -58,7 +58,7 @@ jobs:
       - name: Repros
         run: |
           ulimit -c unlimited
-          python3 repro.py
+          strace python3 repro.py
 
   tests-toolcache-env:
     runs-on: ubuntu-latest
