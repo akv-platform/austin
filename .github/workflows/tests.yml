@@ -105,3 +105,18 @@ jobs:
           dump=`ls /var/lib/systemd/coredump/core.python*`
           echo "dump=$dump"
           coredumpctl gdb -1
+
+  tests-native:
+    runs-on: ubuntu-latest
+    name: Tests on Linux with native python
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Repros
+        run: |
+          set +e
+          python3 repro.py
+          sleep 10
+          dump=`ls /var/lib/systemd/coredump/core.python*`
+          echo "dump=$dump"
+          coredumpctl gdb -1
