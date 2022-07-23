@@ -51,6 +51,8 @@ jobs:
           sudo apt update
           sudo apt install python3.10 strace -y
           sudo ln -s -f /usr/bin/python3 python3.10
+          ls -la `which python`
+          ls -la `which python3`
           python3.10 --version
           python3 --version
           python --version
