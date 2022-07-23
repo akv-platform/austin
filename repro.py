@@ -1,4 +1,4 @@
-from ctypes import cdll, sizeof, cast
+from ctypes import CDLL, cdll, sizeof, cast
 from ctypes.util import find_library
 import ctypes
 
@@ -9,7 +9,9 @@ def load_libc():
     functions.
     """
 
-    libc = cdll.LoadLibrary(find_library("c"))
+    #libc = cdll.LoadLibrary(find_library("c"))
+    libc = CDLL("libc.so.6")
+    print(libc)
 
     # To be safe we setup argtypes, and restypes for functions we pass arguments
     # to and also the return type for functions we use the return value
