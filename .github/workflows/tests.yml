@@ -97,7 +97,7 @@ jobs:
         run: |
           set +e
           sudo apt-get update
-          sudo apt-get install systemd-coredump strace valgrind gdb
+          sudo apt-get install systemd-coredump strace valgrind gdb -y
           ulimit -c unlimited
           python --version
           python3 repro.py
@@ -116,7 +116,3 @@ jobs:
         run: |
           set +e
           python3 repro.py
-          sleep 10
-          dump=`ls /var/lib/systemd/coredump/core.python*`
-          echo "dump=$dump"
-          coredumpctl gdb -1
