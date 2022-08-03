@@ -2,13 +2,10 @@ from test.cunit import C
 from test.cunit.cache import QueueItem
 import ctypes
 
-
 NULL = 0
 
 C.malloc.restype = ctypes.c_void_p
 C.free.argtypes = [ctypes.c_void_p]
-print('====> bindary')
-print(C.__binary__)
 
 def test_queue_item():
 
