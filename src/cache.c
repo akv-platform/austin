@@ -51,7 +51,7 @@ queue_item__destroy(queue_item_t * self, void (*deallocator)(value_t)) {
     return;
   printf("deallocator");
   fflush(stdout);
-  deallocator(self->value);
+  // deallocator(self->value);
   printf("free");
   fflush(stdout);
 
