@@ -308,7 +308,7 @@ class CModule(ModuleType):
             py_name = "".join((_.capitalize() for _ in parts))
             setattr(self, py_name, CMetaType(self, ctypedef, None))
 
-        print("===> collector.functions, len=" + len(name))
+        print("===> collector.functions, len=" + len(collector.functions))
 
         for cfuncdef in collector.functions:
             name = cfuncdef.name
