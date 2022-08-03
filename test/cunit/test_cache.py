@@ -6,5 +6,7 @@ NULL = 0
 
 
 def test_queue_item():
-    value = C.malloc(32)
-    C.free(value)
+    value = C.malloc(16)
+    queue_item = QueueItem(value, 42)
+    assert queue_item.__cself__
+    queue_item.destroy(C.free)
