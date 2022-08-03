@@ -2,7 +2,7 @@ import sys
 from pathlib import Path
 from test.cunit import SRC, CModule
 
-CFLAGS = ["-g", "-fprofile-arcs", "-ftest-coverage"]
+CFLAGS = ["-g", "-fprofile-arcs", "-ftest-coverage", "-fPIC"]
 
 print("start compile " + __name__)
 print(__name__)
