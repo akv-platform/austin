@@ -34,7 +34,8 @@
 // ----------------------------------------------------------------------------
 queue_item_t *
 queue_item_new(value_t value, key_dt key) {
-  printf("queue_item_new");
+  puts("queue_item_new");
+  fflush(stdout);
   queue_item_t *item = (queue_item_t *)calloc(1, sizeof(queue_item_t));
 
   item->value = value;
@@ -49,8 +50,10 @@ queue_item__destroy(queue_item_t * self, void (*deallocator)(value_t)) {
   if (!isvalid(self))
     return;
   printf("deallocator");
+  fflush(stdout);
   deallocator(self->value);
   printf("free");
+  fflush(stdout);
 
   free(self);
 }
