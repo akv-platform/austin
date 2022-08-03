@@ -303,12 +303,14 @@ class CModule(ModuleType):
         for name, ctypedef in collector.collect(
             preprocess(source.with_suffix(".h"))
         ).items():
+            print("===> collector.collect, name=" + name)
             parts = name.split("_")
             py_name = "".join((_.capitalize() for _ in parts))
             setattr(self, py_name, CMetaType(self, ctypedef, None))
 
         for cfuncdef in collector.functions:
             name = cfuncdef.name
+            print("===> collector.functions, name=" + name)
             try:
                 cfunc = CFunction(cfuncdef, getattr(self.__binary__, name))
                 setattr(self, name, cfunc)
