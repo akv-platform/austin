@@ -1,5 +1,6 @@
 from test.cunit import C
 from test.cunit.cache import QueueItem
+import ctypes
 
 
 NULL = 0
