@@ -325,6 +325,8 @@ class CModule(ModuleType):
         self.__binary__.queue_item_new.restype = ctypes.c_void_p
         self.__binary__.queue_item__destroy.argtypes = [ctypes.c_void_p]
 
+        print("=========> __binary___")
+        print(self.__binary__.queue_item_new)
 
     def cglobal(self, name: str, ctype: str) -> Optional[Any]:
         cglobal = getattr(self.__binary__, name)
