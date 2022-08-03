@@ -196,7 +196,7 @@ class CMetaType(type(Structure)):
         )
 
         constructor = getattr(cmodule.__binary__, f"{ctypedef.name[:-2]}_new")
-        constructor.restype = ctypes.c_void_p
+        # constructor.restype = ctypes.c_void_p
         ctype.new = CStaticMethod(ctypedef.constructor, constructor, ctype)
 
         for method_def in ctypedef.methods:
@@ -236,7 +236,8 @@ class DeclCollector(c_ast.NodeVisitor):
         if isinstance(node.type, c_ast.FuncDecl):
             func_name = node.name
             ret_type = node.type.type
-            rtype = ctypes.c_void_p # None
+            rtype = None
+            # rtype = ctypes.c_void_p # None
             if isinstance(ret_type, c_ast.PtrDecl):
                 if "".join(ret_type.type.type.names) == "char":
                     rtype = c_char_p
@@ -322,11 +323,8 @@ class CModule(ModuleType):
                 # Not part of the binary
                 pass
 
-        self.__binary__.queue_item_new.restype = ctypes.c_void_p
-        self.__binary__.queue_item__destroy.argtypes = [ctypes.c_void_p]
-
-        print("=========> __binary___")
-        print(self.__binary__.queue_item_new)
+        # self.__binary__.queue_item_new.restype = ctypes.c_void_p
+        # self.__binary__.queue_item__destroy.argtypes = [ctypes.c_void_p]
 
     def cglobal(self, name: str, ctype: str) -> Optional[Any]:
         cglobal = getattr(self.__binary__, name)
