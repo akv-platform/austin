@@ -1,9 +1,6 @@
-from ctypes import CDLL
-import ctypes
-
-C = CDLL("libc.so.6")
-C.malloc.restype = ctypes.c_void_p
-C.free.argtypes = [ctypes.c_void_p]
+from test.cunit import C
+from test.cunit.cache import QueueItem
 
 value = C.malloc(16)
-C.free(value)
+queue_item = QueueItem(value, 42)
+queue_item.destroy(C.free)
