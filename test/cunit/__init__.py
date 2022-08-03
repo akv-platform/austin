@@ -236,7 +236,7 @@ class DeclCollector(c_ast.NodeVisitor):
         if isinstance(node.type, c_ast.FuncDecl):
             func_name = node.name
             ret_type = node.type.type
-            rtype = None
+            rtype = ctypes.c_void_p # None
             if isinstance(ret_type, c_ast.PtrDecl):
                 if "".join(ret_type.type.type.names) == "char":
                     rtype = c_char_p
