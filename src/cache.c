@@ -34,12 +34,14 @@
 // ----------------------------------------------------------------------------
 queue_item_t *
 queue_item_new(value_t value, key_dt key) {
-  puts("queue_item_new");
+  printf("queue_item_new value=%p key=%lu\n", value, key);
   fflush(stdout);
   queue_item_t *item = (queue_item_t *)calloc(1, sizeof(queue_item_t));
 
   item->value = value;
   item->key = key;
+
+  printf("queue_item_new retunr %p\n", item);
 
   return item;
 }
@@ -49,13 +51,13 @@ void
 queue_item__destroy(queue_item_t * self, void (*deallocator)(value_t)) {
   if (!isvalid(self))
     return;
-  printf("deallocator");
+  printf("deallocator self=%p, self.key=%lu, self.value=%p\n");
   fflush(stdout);
   // deallocator(self->value);
   printf("free");
   fflush(stdout);
 
-  free(self);
+  // free(self);
 }
 
 // ----------------------------------------------------------------------------
