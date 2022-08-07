@@ -41,7 +41,7 @@ def preprocess(source: Path) -> str:
         return restrict_re.sub(
             "",
             run(
-                ["gcc", "-E", "-P", "-fPIC", "-"],
+                ["gcc", "m64", "-E", "-P", "-fPIC", "-"],
                 stdout=PIPE,
                 input=code.encode(),
                 cwd=SRC,
