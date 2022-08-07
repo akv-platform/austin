@@ -1,5 +1,9 @@
+import ctypes
 from test.cunit import C
 from test.cunit.cache import QueueItem
+
+C.malloc.restype = ctypes.c_void_p
+C.free.argtypes = [ctypes.c_void_p]
 
 value = C.malloc(16)
 print("----- value -->", flush=True)
