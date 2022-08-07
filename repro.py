@@ -1,6 +1,9 @@
 import ctypes
 from test.cunit import C
 from test.cunit.cache import QueueItem
+import test.cunit.cache 
+
+print(dir(test.cunit.cache))
 
 C.malloc.restype = ctypes.c_void_p
 C.free.argtypes = [ctypes.c_void_p]
