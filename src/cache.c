@@ -41,7 +41,7 @@ queue_item_new(value_t value, key_dt key) {
   item->value = value;
   item->key = key;
 
-  printf("queue_item_new retunr %p\n", item);
+  printf("queue_item_new return p=%p\n", item);
 
   return item;
 }
