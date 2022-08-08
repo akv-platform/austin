@@ -10,7 +10,7 @@ print("free __annotations__")
 print(C.free.__annotations__)
 
 print("QueueItem.new __annotations__")
-print(test.cunit.cache.QueueItem.new.__annotations__)
+#print(test.cunit.cache.QueueItem.new.__annotations__)
 print(test.cunit.cache.QueueItem.new.argtypes, flush=True)
 
 C.malloc.restype = ctypes.c_void_p
