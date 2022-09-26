@@ -201,7 +201,6 @@ class CMetaType(type(Structure)):
 
         for method_def in ctypedef.methods:
             method_name = method_def.name
-            print("====> method_name " + method_name)
             method = getattr(cmodule.__binary__, f"{ctypedef.name[:-2]}__{method_name}")
             setattr(ctype, method_name, CMethod(method_def, method, ctype))
 
