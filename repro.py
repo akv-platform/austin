@@ -1,5 +1,3 @@
-exit(0)
-
 import ctypes
 from test.cunit import C
 from test.cunit.cache import QueueItem
@@ -19,10 +17,10 @@ print("QueueItem.new __annotations__", flush=True)
 C.malloc.restype = ctypes.c_void_p
 C.free.argtypes = [ctypes.c_void_p]
 
-exit(0)
 # just make sure malloc/free works
 p = C.malloc(16)
 C.free(p)
+exit(0)
 
 
 test.cunit.cache.QueueItem.new.argtypes = [ctypes.c_void_p, ctypes.c_long]
