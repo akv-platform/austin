@@ -51,7 +51,7 @@ print(test.cunit.cache.QueueItem.new)
 print(test.cunit.cache.QueueItem.new.__cfunc__)
 print(test.cunit.cache.QueueItem.new.__cfunc__.argtypes)
 test.cunit.cache.QueueItem.new.__cfunc__.argtypes = [ctypes.c_void_p, ctypes.c_long]
-#test.cunit.cache.QueueItem.new.__cfunc__.restype = ctypes.c_void_p
+test.cunit.cache.QueueItem.new.__cfunc__.restype = ctypes.c_void_p
 #test.cunit.cache.QueueItem.destroy.__cfunc__.argtypes = [ctypes.c_void_p, ctypes.c_void_p]
 
 value = C.malloc(16)
