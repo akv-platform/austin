@@ -52,6 +52,10 @@ void
 queue_item__destroy(queue_item_t * self, void (*deallocator)(value_t)) {
   if (!isvalid(self))
     return;
+  printf("queue_item__destroy self=%p\n", self);
+  fflush(stdout);
+  printf("queue_item__destroy self=%p, self.key=%lu\n", self, self->key);
+  fflush(stdout);
   printf("queue_item__destroy self=%p, self.key=%lu, self.value=%p\n", self, self->key, self->value);
   fflush(stdout);
   deallocator(self->value);
