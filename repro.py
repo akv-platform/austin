@@ -28,6 +28,7 @@ print(cache)
 value = C.malloc(16)
 print("----- value -->", flush=True)
 print(hex(value), flush=True)
+cache.queue_item_new.argtypes = [ctypes.c_void_p, ctypes.c_long]
 queue_item = cache.queue_item_new(value, 42)
 print(queue_item)
 exit(0)
