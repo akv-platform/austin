@@ -24,6 +24,9 @@ C.free(p)
 print("malloc/free works", flush=True)
 
 
+print(test.cunit.cache.QueueItem.new, flush=True)
+print(test.cunit.cache.QueueItem.__new__, flush=True)
+
 test.cunit.cache.QueueItem.new.argtypes = [ctypes.c_void_p, ctypes.c_long]
 test.cunit.cache.QueueItem.__new__.argtypes = [ctypes.c_void_p, ctypes.c_long]
 
