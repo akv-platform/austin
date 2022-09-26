@@ -23,6 +23,10 @@ p = C.malloc(16)
 C.free(p)
 print("malloc/free works", flush=True)
 
+cashe = ctypes.CDLL("cashe.so")
+print(cashe)
+exit(0)
+
 
 print(test.cunit.cache.QueueItem.new, flush=True)
 print(test.cunit.cache.QueueItem.__new__, flush=True)
