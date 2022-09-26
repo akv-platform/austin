@@ -15,12 +15,12 @@ print(dir(test.cunit.cache.QueueItem))
 #print("QueueItem.new.argtypes", flush=True)
 #print(test.cunit.cache.QueueItem.new.argtypes, flush=True)
 
-C.malloc.restype = ctypes.c_void_p
-C.free.argtypes = [ctypes.c_void_p]
+#C.malloc.restype = ctypes.c_void_p
+#C.free.argtypes = [ctypes.c_void_p]
 
 # just make sure malloc/free works
-p = C.malloc(16)
-C.free(p)
+#p = C.malloc(16)
+#C.free(p)
 
 
 test.cunit.cache.QueueItem.new.argtypes = [ctypes.c_void_p, ctypes.c_long]
@@ -30,11 +30,11 @@ print("----- value -->", flush=True)
 print(hex(value), flush=True)
 queue_item = QueueItem(value, 42)
 print("----------> ", flush=True)
-print(hex(id(queue_item)), flush=True)
-print(ctypes.byref(queue_item), flush=True)
-print(hex(ctypes.byref(queue_item)), flush=True)
-print(queue_item.key)
-print(queue_item.value)
+#print(hex(id(queue_item)), flush=True)
+#print(ctypes.byref(queue_item), flush=True)
+#print(hex(ctypes.byref(queue_item)), flush=True)
+#print(queue_item.key)
+#print(queue_item.value)
 print("^^^^^^^^^^^^", flush=True)
 queue_item.destroy(C.free)
 print("==============", flush=True)
