@@ -52,7 +52,7 @@ void
 queue_item__destroy(queue_item_t * self, void (*deallocator)(value_t)) {
   if (!isvalid(self))
     return;
-  printf("deallocator self=%p, self.key=%lu, self.value=%p\n");
+  printf("queue_item__destroy self=%p, self.key=%lu, self.value=%p\n", self, self->key, self->value);
   fflush(stdout);
   deallocator(self->value);
   printf("free");
