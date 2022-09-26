@@ -34,7 +34,7 @@
 // ----------------------------------------------------------------------------
 queue_item_t *
 queue_item_new(value_t value, key_dt key) {
-  printf("queue_item_new value=p%lx(%d) key=%lu\n", value, sizeof(value), key);
+  printf("queue_item_new value=%p(%d) key=%lu\n", value, sizeof(value), key);
   fflush(stdout);
   queue_item_t *item = (queue_item_t *)calloc(1, sizeof(queue_item_t));
 
