@@ -25,12 +25,13 @@ print("malloc/free works", flush=True)
 
 
 test.cunit.cache.QueueItem.new.argtypes = [ctypes.c_void_p, ctypes.c_long]
+test.cunit.cache.QueueItem.__new__.argtypes = [ctypes.c_void_p, ctypes.c_long]
 
 value = C.malloc(16)
 print("----- value -->", flush=True)
 print(hex(value), flush=True)
 queue_item = test.cunit.cache.QueueItem.new(value, 42)
-#QueueItem(value, 42)
+queue_item = QueueItem(value, 42)
 print("----------> ", flush=True)
 print(hex(id(queue_item)), flush=True)
 print(ctypes.byref(queue_item), flush=True)
