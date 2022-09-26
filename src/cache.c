@@ -24,17 +24,17 @@
 #include <math.h>
 #endif
 #include <stdio.h>
+#include <inttypes.h>
 
 #include "cache.h"
 #include "logging.h"
-#include "math.h"
 
 // -- Queue -------------------------------------------------------------------
 
 // ----------------------------------------------------------------------------
 queue_item_t *
 queue_item_new(value_t value, key_dt key) {
-  printf("queue_item_new value=%p key=%lu\n", value, key);
+  printf("queue_item_new value=%" PRIx64 " key=%lu\n", value, key);
   fflush(stdout);
   queue_item_t *item = (queue_item_t *)calloc(1, sizeof(queue_item_t));
 
