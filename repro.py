@@ -46,14 +46,9 @@ cache.queue_item__destroy.argtypes = [ctypes.c_void_p, ctypes.c_void_p]
 cache.queue_item__destroy(0,queue_item)
 
 
-print(test.cunit.cache.QueueItem.new, flush=True)
-print(test.cunit.cache.QueueItem.new.__args__, flush=True)
-print(test.cunit.cache.QueueItem.new.__cfunc__, flush=True)
-print(test.cunit.cache.QueueItem.new.__cfunc__.argtypes, flush=True)
-
-test.cunit.cache.QueueItem.new.argtypes = [ctypes.c_void_p, ctypes.c_long]
-test.cunit.cache.QueueItem.new.__args__ = [ctypes.c_void_p, ctypes.c_long]
 test.cunit.cache.QueueItem.new.__cfunc__.argtypes = [ctypes.c_void_p, ctypes.c_long]
+test.cunit.cache.QueueItem.new.__cfunc__.restype = ctypes.c_void_p
+test.cunit.cache.QueueItem.destroy.__cfunc__.argtypes = [ctypes.c_void_p, ctypes.c_void_p]
 
 value = C.malloc(16)
 print("----- value pointer for test.cunit.cache.QueueItem.new -->", flush=True)
