@@ -196,6 +196,11 @@ class CMetaType(type(Structure)):
         )
 
         constructor = getattr(cmodule.__binary__, f"{ctypedef.name[:-2]}_new")
+        print("********** cosntructor VVVVV ")
+        print(ctypedef.name)
+        print(constructor)
+        print(ctypedef)
+        print("********** cosntructor ^^^^^ ")
         # constructor.restype = ctypes.c_void_p
         ctype.new = CStaticMethod(ctypedef.constructor, constructor, ctype)
 
