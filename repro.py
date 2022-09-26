@@ -23,7 +23,7 @@ p = C.malloc(16)
 C.free(p)
 print("malloc/free works", flush=True)
 
-cashe = ctypes.CDLL("cashe.so")
+cashe = ctypes.CDLL("src/cashe.so")
 print(cashe)
 exit(0)
 
