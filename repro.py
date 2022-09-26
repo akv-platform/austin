@@ -7,11 +7,12 @@ print(dir(test.cunit.cache))
 print(dir(test.cunit.cache.QueueItem))
 
 
-print("free __annotations__", flush=True)
+#print("free __annotations__", flush=True)
 #print(C.free.__annotations__, flush=True)
 
-print("QueueItem.new __annotations__", flush=True)
-print(test.cunit.cache.QueueItem.new.__annotations__)
+#print("QueueItem.new __annotations__", flush=True)
+#print(test.cunit.cache.QueueItem.new.__annotations__)
+print("QueueItem.new.argtypes", flush=True)
 print(test.cunit.cache.QueueItem.new.argtypes, flush=True)
 
 C.malloc.restype = ctypes.c_void_p
