@@ -54,13 +54,13 @@ test.cunit.cache.QueueItem.new.__cfunc__.argtypes = [ctypes.c_void_p, ctypes.c_l
 test.cunit.cache.QueueItem.new.__cfunc__.restype = ctypes.c_void_p
 #test.cunit.cache.QueueItem.destroy.__cfunc__.argtypes = [ctypes.c_void_p, ctypes.c_void_p]
 
-value = C.malloc(16)
-print("----- value pointer for test.cunit.cache.QueueItem.new -->", flush=True)
-print(hex(value), flush=True)
-print("----- call test.cunit.cache.QueueItem.new -->", flush=True)
-queue_item = test.cunit.cache.QueueItem.new(value, 42)
-print("----- call test.cunit.cache.QueueItem.new returned -->", flush=True)
-print(hex(queue_item))
+#value = C.malloc(16)
+#print("----- value pointer for test.cunit.cache.QueueItem.new -->", flush=True)
+#print(hex(value), flush=True)
+#print("----- call test.cunit.cache.QueueItem.new -->", flush=True)
+#queue_item = test.cunit.cache.QueueItem.new(value, 42)
+#print("----- call test.cunit.cache.QueueItem.new returned -->", flush=True)
+#print(hex(queue_item))
 
 value = C.malloc(16)
 print("----- value pointer for QueueItem() -->", flush=True)
