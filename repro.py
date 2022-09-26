@@ -12,8 +12,8 @@ print(dir(test.cunit.cache.QueueItem))
 
 #print("QueueItem.new __annotations__", flush=True)
 #print(test.cunit.cache.QueueItem.new.__annotations__)
-print("QueueItem.new.argtypes", flush=True)
-print(test.cunit.cache.QueueItem.new.argtypes, flush=True)
+#print("QueueItem.new.argtypes", flush=True)
+#print(test.cunit.cache.QueueItem.new.argtypes, flush=True)
 
 C.malloc.restype = ctypes.c_void_p
 C.free.argtypes = [ctypes.c_void_p]
@@ -21,7 +21,6 @@ C.free.argtypes = [ctypes.c_void_p]
 # just make sure malloc/free works
 p = C.malloc(16)
 C.free(p)
-exit(0)
 
 
 test.cunit.cache.QueueItem.new.argtypes = [ctypes.c_void_p, ctypes.c_long]
