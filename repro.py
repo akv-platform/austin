@@ -15,6 +15,7 @@ print(dir(test.cunit.cache.QueueItem))
 #print("QueueItem.new.argtypes", flush=True)
 #print(test.cunit.cache.QueueItem.new.argtypes, flush=True)
 
+print(C.malloc)
 C.malloc.restype = ctypes.c_void_p
 C.free.argtypes = [ctypes.c_void_p]
 
