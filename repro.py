@@ -44,7 +44,6 @@ print(hex(queue_item))
 print("----- call queue_item__destroy-->", flush=True)
 cache.queue_item__destroy.argtypes = [ctypes.c_void_p, ctypes.c_void_p]
 cache.queue_item__destroy(0,queue_item)
-exit(0)
 
 
 print(test.cunit.cache.QueueItem.new, flush=True)
@@ -54,12 +53,20 @@ test.cunit.cache.QueueItem.new.argtypes = [ctypes.c_void_p, ctypes.c_long]
 test.cunit.cache.QueueItem.__new__.argtypes = [ctypes.c_void_p, ctypes.c_long]
 
 value = C.malloc(16)
-print("----- value -->", flush=True)
+print("----- value pointer for test.cunit.cache.QueueItem.new -->", flush=True)
 print(hex(value), flush=True)
+print("----- call test.cunit.cache.QueueItem.new -->", flush=True)
 queue_item = test.cunit.cache.QueueItem.new(value, 42)
+print("----- call test.cunit.cache.QueueItem.new returned -->", flush=True)
+print(hex(queue_item))
+
+value = C.malloc(16)
+print("----- value pointer-->", flush=True)
+print(hex(value), flush=True)
+print("----- call QueueItem() -->", flush=True)
 queue_item = QueueItem(value, 42)
-print("----------> ", flush=True)
-print(hex(id(queue_item)), flush=True)
+#print("----------> ", flush=True)
+#print(hex(id(queue_item)), flush=True)
 print(ctypes.byref(queue_item), flush=True)
 #print(hex(ctypes.byref(queue_item)), flush=True)
 #print(queue_item.key)
