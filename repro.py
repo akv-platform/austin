@@ -26,11 +26,20 @@ print("malloc/free works", flush=True)
 cache = ctypes.CDLL("src/cache.so")
 print(cache)
 value = C.malloc(16)
-print("----- value -->", flush=True)
+print("----- value pointer-->", flush=True)
 print(hex(value), flush=True)
+print("----- call queue_item_new without argtypes-->", flush=True)
+cache.queue_item_new(value, 42)
+
 cache.queue_item_new.argtypes = [ctypes.c_void_p, ctypes.c_long]
+cache.queue_item_new.restype = ctypes.c_void_p
+
+print("----- call queue_item_new with argtypes-->", flush=True)
+cache.queue_item_new(value, 42)
 queue_item = cache.queue_item_new(value, 42)
 print(queue_item)
+print("----- call queue_item__destroy-->", flush=True)
+cache.queue_item__destroy(queue_item)
 exit(0)
 
 
