@@ -190,9 +190,12 @@ jobs:
           make
       - name: Run tests
         run: |
+          set -x
           ulimit -c unlimited
           python3.10 -m venv .venv
           source .venv/bin/activate
+          which python3.10
+          python3.10 --version
           pip install --upgrade pip
           pip install -r test/requirements.txt
           # sudo -E .venv/bin/pytest --pastebin=failed --no-flaky-report -sr a
