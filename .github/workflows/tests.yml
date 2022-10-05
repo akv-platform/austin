@@ -179,7 +179,7 @@ jobs:
       - name: Install ppa python
         run: |
           sudo add-apt-repository -y ppa:deadsnakes/ppa
-          sudo apt-get -y install python3.10
+          sudo apt-get -y install python3.10{,-full}
           which python3.10
           python3.10 --version
 
@@ -188,14 +188,15 @@ jobs:
           autoreconf --install
           ./configure --enable-debug-symbols true
           make
+
       - name: Run tests
         run: |
           set -x
           ulimit -c unlimited
           which python3.10
           python3.10 --version
-          python3.10 -v -m venv .venv
-          #source .venv/bin/activate
+          python3.10 -m venv .venv
+          source .venv/bin/activate
           which python3.10
           python3.10 --version
           pip install --upgrade pip
