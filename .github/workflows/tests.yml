@@ -194,7 +194,7 @@ jobs:
           ulimit -c unlimited
           which python3.10
           python3.10 --version
-          python3.10 -m venv .venv
+          python3.10 -v -m venv .venv
           #source .venv/bin/activate
           which python3.10
           python3.10 --version
