@@ -62,7 +62,7 @@ queue_item__destroy(queue_item_t * self, void (*deallocator)(value_t)) {
   printf("free");
   fflush(stdout);
 
-  //free(self);
+  free(self);
 }
 
 // ----------------------------------------------------------------------------
